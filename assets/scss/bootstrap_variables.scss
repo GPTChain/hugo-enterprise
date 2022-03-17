@@ -1,0 +1,41 @@
+/* Set Bootstrap variables */
+
+// Set colors.
+$primary: $sta-primary;
+$text-muted: rgba(0, 0, 0, 0.54);
+
+// Grid widths
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Container widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  // wider default: 1140 -> 1290
+  xl: 1290px,
+);
+
+$navbar-toggler-padding-x: 0;
+$navbar-toggler-font-size: 18px;
+$navbar-brand-font-size: 1.2rem;
+
+// Theme variables accesses bootstrap
+$navbar-light-color: $sta-menu-text;
+$navbar-light-active-color: $sta-menu-text-active;
+$navbar-light-brand-color: $sta-menu-title;
+$navbar-light-brand-hover-color: $navbar-light-active-color;
+$navbar-light-toggler-border-color: transparent;
+
+
+// Wowchemy proto append
+$dropdown-min-width: fit-content;
+$dropdown-border-radius: 8px;
+$dropdown-border-color: rgba(127, 127, 127, 0.5);
+$input-border-color: rgba(127, 127, 127, 0.5);

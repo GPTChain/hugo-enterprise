@@ -1,0 +1,13 @@
+# Default language
+en:
+  languageCode: en-us
+  title: Wowchemy Proto # Website name
+  contentDir: content/en
+zh:
+  languageCode: zh
+  title: Wowchemy Proto
+  contentDir: content/zh-hans
+zh-Hant:
+  languageCode: zh-Hant
+  title: Wowchemy Proto
+  contentDir: content/zh-hant

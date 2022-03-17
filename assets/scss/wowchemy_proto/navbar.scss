@@ -1,0 +1,67 @@
+@function createDistinguishColor($target-color){
+  $lighten_color: rgba(255,255,255,0.1);
+  $darken_color: rgba(0,0,0,0.1);
+
+  $is-darken: lightness($target-color) <= 30% and saturation($target-color) < 30;
+  @if($is-darken){
+    @return $lighten_color;
+  } @else {
+    @return $darken_color;
+  }
+}
+
+.navbar {
+  --distinguish-color: #{createDistinguishColor($sta-menu-primary)};
+}
+.dark .navbar {
+  --distinguish-color: #{createDistinguishColor($sta-dark-menu-primary)};
+}
+
+// navbar
+.navbar {
+  background-color: var(--menu-primary-color);
+
+  @if(#{$sta-menu-hover}) {
+    .nav-item:hover {
+      background-color: var(--distinguish-color);
+    }
+  }
+
+  @if($sta-menu-shadow) {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  @if(#{$sta-menu-border}) {
+    border-bottom: 0.3px solid var(--distinguish-color);
+  }
+
+  @if(#{$sta-menu-blur}) {
+    backdrop-filter: blur(24px) saturate(1.8) brightness(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8) brightness(1.1);
+  }
+}
+
+// mobile navbar-collapse
+@include media-breakpoint-down(md){
+  .navbar-collapse {
+    background-color: var(--menu-primary-color);;
+  }
+  .navbar-collapse > .navbar-nav {
+    width: 100%;
+    //background-color: #313c57;
+  }
+}
+
+// dropdown
+.dropdown {
+  .dropdown-menu {
+    background-color: var(--menu-primary-color) !important;
+  }
+  .dropdown-item {
+    background-color: transparent !important;
+  }
+}
+
+
+
+

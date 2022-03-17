@@ -1,0 +1,77 @@
+// Footer styles
+
+footer {
+  margin: 1.25rem 0;
+  width: 100%;
+}
+
+footer p {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+footer .powered-by {
+  font-size: 0.67rem;
+  margin-bottom: 0.5rem;
+}
+
+.site-footer {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+// Dark footer theme
+.dark .site-footer,
+.dark .docs .body-footer {
+  color: rgba(255, 255, 255, 0.54);
+}
+
+// Footer copyright license
+
+.footer-license-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  height: auto;
+  width: auto;
+  text-decoration: none;
+}
+
+.footer-license-icons i {
+  display: inline-flex;
+  margin-right: 8px;
+  height: 22px;
+  vertical-align: text-bottom;
+}
+
+//.footer-contact {
+//  display: flex;
+//  flex-direction: row;
+//  justify-content: center;
+//  align-items: center;
+//  margin-bottom: 8px;
+//  div {
+//    padding: 2px 8px;
+//  }
+//  a {
+//    cursor: pointer;
+//  }
+//  i {
+//    font-size: 1.15rem;
+//    line-height: 1;
+//  }
+//}
+//
+//.dark .footer-contact a {
+//  filter: saturate(0) brightness(0.8);
+//  &:hover {
+//    filter: saturate(0) brightness(1.3);
+//  }
+//}
+//.footer-contact a {
+//  filter: saturate(0) brightness(0.8);
+//  &:hover {
+//    filter: saturate(0) brightness(0.2);
+//  }
+//}

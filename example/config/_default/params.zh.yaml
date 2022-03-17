@@ -1,0 +1,14 @@
+# Localization
+locale:
+  date_format: '2006年1月1日'
+
+# Site footer
+footer:
+  #  text: 'a footer static text'
+  copyright:
+    notice: 'COPYRIGHT © {year} WOWCHEMY PROTO.'
+#  license:
+#    enable: true
+#    allow_commercial: false
+#    allow_derivatives: false
+#    share_alike: true

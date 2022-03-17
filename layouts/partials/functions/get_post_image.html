@@ -1,0 +1,16 @@
+{{ $item := . }}
+
+{{ $resource := ($item.Resources.ByType "image").GetMatch "*featured*" }}
+
+{{ if not $resource }}
+    {{/* $folderDir := (path.Join "media" (path.Dir $item.Path)) */}}
+    {{ $folderDir := (path.Join "media" "post") }}
+    {{ if os.FileExists (path.Join "assets" $folderDir) }}
+        {{ $imageBaseName := ($item.Params.image.filename | default "featured.png") }}
+        {{ $imageBaseName = (path.Base $imageBaseName) }}
+        {{ $resource =  resources.Get (path.Join $folderDir $imageBaseName)}}
+    {{ end }}
+{{ end }}
+
+
+{{ return $resource }}

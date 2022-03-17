@@ -1,0 +1,7 @@
+main:
+  - name: menu_item_home
+    url: /
+    weight: 10
+  - name: menu_item_about
+    url: about/
+    weight: 100
