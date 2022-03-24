@@ -68,6 +68,7 @@
 
     .main-menu-item > ul.navbar-nav {
       height: auto;
+      border-bottom: 1px solid var(--menu-border-color);
     }
 
     .main-menu-item.collapse {
