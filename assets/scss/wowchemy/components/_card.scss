@@ -42,11 +42,14 @@
 }
 
 .card-simple {
-  background-color: var(--menu-primary-color);
+  backdrop-filter: brightness(1.05);
+  -webkit-backdrop-filter: brightness(1.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dark .card-simple {
+  backdrop-filter: brightness(1.5);
+  -webkit-backdrop-filter: brightness(1.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
   //box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   //border: $sta-dark-menu-border;
