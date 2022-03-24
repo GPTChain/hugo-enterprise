@@ -13,3 +13,7 @@
 @import 'widgets/all';
 @import 'dark';
 @import 'integrations';
+
+:root {
+  --wrapper-max-width: 820px;
+}

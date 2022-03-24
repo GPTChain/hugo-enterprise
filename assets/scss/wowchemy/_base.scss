@@ -86,6 +86,9 @@ body, body * {
 
 .page-body {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 // UTILITIES
@@ -272,15 +275,10 @@ mark,
 }
 
 .universal-wrapper {
-  margin: 0 auto;
+  align-self: center;
   padding: 1px 1rem 1rem;
   width: 100%;
-}
-
-@media only screen and (min-width: 821px) {
-  .universal-wrapper {
-    width: 820px;
-  }
+  max-width: var(--wrapper-max-width);
 }
 
 small,

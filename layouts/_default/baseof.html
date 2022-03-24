@@ -34,7 +34,7 @@
     {{ partial "navbar" . }}
   </div>
 
-  <div class="page-body">
+  <div class="page-body" style="{{with .Params.design.wrapperMaxWidth}}{{printf "--wrapper-max-width: %s;" . | safeCSS}}{{end}}">
     {{ block "main" . }}{{ end }}
   </div>
 
