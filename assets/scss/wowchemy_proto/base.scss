@@ -1,0 +1,26 @@
+
+.wg-blank {
+  align-self: center;
+  width: 100%;
+  max-width: 1024px;
+
+  & > .container > .row {
+    & > div:first-child {
+      // title
+      & > h1 {
+
+      }
+      // subtitle
+      & > p {
+        font-size: 0.8rem;
+      }
+    }
+
+    // content
+    & > div:nth-child(2) {
+      & > *:first-child {
+        margin-top: 0 !important;
+      }
+    }
+  }
+}
