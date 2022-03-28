@@ -10,6 +10,7 @@
       & > h1 {
 
       }
+
       // subtitle
       & > p {
         font-size: 0.8rem;
@@ -22,5 +23,24 @@
         margin-top: 0 !important;
       }
     }
+  }
+}
+
+
+.card-simple,
+.pagination li > a {
+  background-color: transparent !important;
+
+  backdrop-filter: brightness(1.05) !important;
+  -webkit-backdrop-filter: brightness(1.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark {
+  .card-simple,
+  .pagination li > a {
+    backdrop-filter: brightness(1.5) !important;
+    -webkit-backdrop-filter: brightness(1.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 }
