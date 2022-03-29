@@ -3,15 +3,24 @@
  **************************************************/
 
 .post-nav {
-  margin-top: 1rem;
+  //margin-top: 1rem;
   font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1px -1rem 0.5rem;
 }
 
 .post-nav-item {
+  margin: 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: rgba(127, 127, 127, 0.2);
+  }
+
   hyphens: auto;
   word-wrap: break-word;
-  padding: 11px 0 12px;
-  width: 100%;
 }
 
 .post-nav-item a {
