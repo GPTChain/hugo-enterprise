@@ -64,12 +64,13 @@
       {{- $image = resources.Get (path.Join "media" $page.Params.hero_media) -}}
     {{- end -}}
     {{ if $image }}
-      {{ $isSVG := eq $image.MediaType.SubType "svg" }}
-      {{ if $isSVG -}}
+      <div>
+        {{ $isSVG := eq $image.MediaType.SubType "svg" }}
+        {{ if $isSVG -}}
 
         <img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}">
 
-      {{- else }}
+        {{- else }}
 
         {{ $legacy_img := $image.Resize "400x" }}
         {{ $img_src := "" }}
@@ -77,16 +78,17 @@
         {{ $widths := slice 1200 800 400 }}
 
         {{ range $widths }}
-          {{ $src_link := ($image.Resize (printf "%dx" .)).RelPermalink }}
-          {{ if eq $img_src "" }}
-            {{ $img_src = $src_link }}
-          {{ end }}
-          {{ $img_src_set = $img_src_set | append (printf "%s %dw" $src_link .) }}
+        {{ $src_link := ($image.Resize (printf "%dx" .)).RelPermalink }}
+        {{ if eq $img_src "" }}
+        {{ $img_src = $src_link }}
+        {{ end }}
+        {{ $img_src_set = $img_src_set | append (printf "%s %dw" $src_link .) }}
         {{ end }}
         {{ $img_src_set = delimit $img_src_set "," }}
 
         <img src="{{ $legacy_img.RelPermalink }}" srcset="{{ $img_src_set }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $page.Title }}">
-      {{ end }}
+        {{ end }}
+      </div>
     {{ end }}
   </div>
 </div>
