@@ -3,13 +3,16 @@
  **************************************************/
 
 .wg-hero:first-of-type {
-  height: calc(100vh - 70px - 4rem);
+  min-height: calc(100vh - 70px - 4rem);
 }
 
 .wg-hero {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @include media-breakpoint-down(md){
+    justify-content: flex-start;
+  }
   & > .container {
     //width: ;
   }
@@ -22,13 +25,19 @@
 .hero-title {
   font-size: 2.7rem;
   font-weight: bolder;
-  margin-top: 0;
+  margin-top: 1.2rem;
   line-height: 1;
 }
 
 .hero-lead {
   max-width: 768px;
-  font-size: 1.35rem;
+  font-size: 1rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .wg-hero.dark .hero-title,
@@ -56,6 +65,7 @@
 }
 
 .wg-hero .cta-btns {
+  user-select: none;
   margin-bottom: 16px;
 }
 
@@ -89,6 +99,9 @@ a.hero-cta-alt:hover {
 
 .wg-hero .hero-note {
   font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hero-media {

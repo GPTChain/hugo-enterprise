@@ -2,6 +2,7 @@
 <span class="js-widget-page d-none"></span>
 
 {{/* Get widget page */}}
+{{ $ := . }}
 {{ $page := "" }}
 {{ $headless_bundle := "" }}
 {{ if .IsHome }}
@@ -73,8 +74,7 @@
     {{ $style_bg = printf "%sopacity: %s;" $style_bg (string $bg.opacity) }}
   {{ end }}
   {{ if $bg.brightness }}
-    {{ $brn := $bg.brightness }}
-    {{ $style_bg = printf "%sfilter: brightness(%s);" $style_bg (string $brn) }}
+    {{ $style_bg = printf "%sfilter: brightness(calc(%s + var(--bg-img-brn-ofs)));" $style_bg (string $bg.brightness) }}
   {{ end }}
 
   {{ with $st.Params.design.spacing.padding }}

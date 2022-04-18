@@ -58,11 +58,13 @@ $sta-menu-blur: {{ $scr.Get "menu_blur" }};
 :root {
   --primary-color: #{$sta-primary};
   --menu-primary-color: #{$sta-menu-primary};
+  --bg-img-brn-ofs: 0.35;
 }
 
 .dark {
   --primary-color: #{$sta-dark-primary};
   --menu-primary-color: #{$sta-dark-menu-primary};
+  --bg-img-brn-ofs: -0.35;
 }
 
 @import "bootstrap_variables";
