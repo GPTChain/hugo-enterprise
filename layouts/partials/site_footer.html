@@ -2,12 +2,12 @@
 
   {{ partial "hooks/footer" . }}
 
-  {{ $sharing := site.Params.footer.sharing }}
-  {{ if $sharing }}
+  {{ $social := site.Params.footer.social }}
+  {{ if $social }}
   <div class="powered-by d-flex justify-content-center">
     {{ $packs := (dict "email" "fas")}}
     {{ $icons := (dict "email" "envelope") }}
-    {{ range $item := $sharing }}
+    {{ range $item := $social }}
     {{ $k := $item.type }}
     {{ $v := $item.url }}
     {{ $href := $v }}
