@@ -4,6 +4,10 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 ########################################################################################################################
+# Localization
+locale:
+  date_format: 'Jan 2, 2006'
+  time_format: '7:56 am'
 
 # Appearance
 appearance:
@@ -22,6 +26,29 @@ header:
     show_day_night: true
     show_search: true
     show_logo: true
+
+# Site footer
+footer:
+  #  text: 'a footer static text'
+  copyright:
+    notice: 'COPYRIGHT © {year} WOWCHEMY PROTO.'
+#  license:
+#    enable: true
+#    allow_commercial: false
+#    allow_derivatives: false
+#    share_alike: true
+  sharing:
+    - type: email
+      url: 'example@email'
+    - type: github
+      url: 'https://github.com/'
+    - type: twitter
+      url: 'https://twitter.com/'
+    - type: linkedin
+      url: 'https://www.linkedin.com/'
+    - type: facebook
+      url: 'https://www.facebook.com/'
+
 
 # external js
 plugins_js:
@@ -98,7 +125,7 @@ show_related:
 sharing_image: ''
 reading_time: true
 section_pager: true
-#copyright_license:
+#copyright_license: (legacy)
 #  enable: true
 #  allow_derivatives: false
 #  share_alike: true

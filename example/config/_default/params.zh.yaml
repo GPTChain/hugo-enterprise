@@ -1,6 +1,7 @@
 # Localization
 locale:
-  date_format: '2006年1月1日'
+  date_format: '2006年1月13日'
+  time_format: '下午7点56分'
 
 # Site footer
 footer:
@@ -12,3 +13,14 @@ footer:
 #    allow_commercial: false
 #    allow_derivatives: false
 #    share_alike: true
+  sharing:
+    - type: email
+      url: 'example@email'
+    - type: github
+      url: 'https://github.com/'
+    - type: twitter
+      url: 'https://twitter.com/'
+    - type: linkedin
+      url: 'https://www.linkedin.com/'
+    - type: facebook
+      url: 'https://www.facebook.com/'

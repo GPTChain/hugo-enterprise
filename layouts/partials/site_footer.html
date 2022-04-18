@@ -2,6 +2,38 @@
 
   {{ partial "hooks/footer" . }}
 
+  {{ $sharing := site.Params.footer.sharing }}
+  {{ if $sharing }}
+  <div class="powered-by d-flex justify-content-center">
+    {{ $packs := (dict "email" "fas")}}
+    {{ $icons := (dict "email" "envelope") }}
+    {{ range $item := $sharing }}
+    {{ $k := $item.type }}
+    {{ $v := $item.url }}
+    {{ $href := $v }}
+    {{ if eq $k "email" }}
+    {{ $href = printf "mailto:%s" $v }}
+    {{ end }}
+
+    {{ $icon := $k }}
+    {{ if isset $icons $k }}
+    {{ $icon = index $icons $k }}
+    {{ end }}
+
+    {{ $pack := "fab" }}
+    {{ if isset $packs $k }}
+    {{ $pack = index $packs $k }}
+    {{ end }}
+
+    <div class="px-1" style="font-size: 0.8em">
+      <a href="{{ $href }}" target="_blank">
+        <i class="{{$pack}} fa-{{$icon}} fa-2x" aria-hidden="true"></i>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
   {{ if .IsTranslated | and site.Params.footer.show_translations }}
     <div class="powered-by d-flex flex-wrap pb-2 justify-content-center">
       <div class="p-1 font-weight-bold"><i class="fas fa-globe pr-1" aria-hidden="true"></i>{{ i18n "languages" }}:</div>
