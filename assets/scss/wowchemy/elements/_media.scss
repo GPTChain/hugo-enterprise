@@ -123,8 +123,10 @@ a[data-fancybox] {
 }
 
 .gallery a[data-fancybox] img {
-  height: 250px;
-  width: auto;
+  //height: 250px;
+  //width: auto;
+  width: 326px;
+  height: auto;
   max-width: inherit;
   display: inherit;
   margin: 0;

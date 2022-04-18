@@ -4,7 +4,11 @@ h1 {
   font-weight: bolder;
 }
 
-.wg-blank {
+.section-heading p {
+  font-size: .8rem;
+}
+.wg-blank,
+.wg-contact {
   align-self: center;
   width: 100%;
   max-width: 1024px;
