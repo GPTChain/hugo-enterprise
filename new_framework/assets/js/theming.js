@@ -1,0 +1,3 @@
+function initThemeVariation() {}
+
+export { initThemeVariation };

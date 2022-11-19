@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default "en-us" }}">
+  {{- partial "head/_index.html" . -}}
+  <body
+    id="top"
+    data-spy="scroll"
+    data-offset="70"
+    data-target="#navbar-main"
+    class="page-wrapper {{ with .Params.design.css_class }}{{ . }}{{ end }}"
+    {{ with .File }}data-wc-page-id="{{ .File.UniqueID }}"{{ end }}
+    {{ with .Params.design.css_style }}style="{{ . | safeCSS }}"{{ end }}
+  >
+    {{- partial "load_js.html" . -}}
+
+    {{- partial "site_search/_index.html" . -}}
+
+    {{- partial "site_header/_index.html" . -}}
+
+
+    <div class="page-body">
+      {{- block "main" . }}{{- end }}
+    </div>
+
+    {{- partial "site_footer/_index.html" . -}}
+
+    {{- partial "site_scripts/_index.html" . -}}
+  </body>
+</html>

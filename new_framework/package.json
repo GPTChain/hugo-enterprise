@@ -1,0 +1,15 @@
+{
+  "name": "hugo-base",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": " cd ./example/website && hugo server --disableFastRender",
+    "dev2": " cd ./example/ananke/exampleSite && hugo server --disableFastRender"
+  },
+  "devDependencies": {
+    "hugo-extended": "^0.90.1",
+    "prettier": "^2.7.1",
+    "prettier-plugin-go-template": "^0.0.13"
+  }
+}

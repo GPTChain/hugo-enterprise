@@ -1,0 +1,18 @@
+{{ if site.Params.marketing.google_optimize | and hugo.IsProduction }}
+  <script src="https://www.googleoptimize.com/optimize.js?id={{ site.Params.marketing.google_optimize }}"></script>
+{{- end -}}
+
+{{ with site.Params.marketing.google_site_verification }}
+  <meta name="google-site-verification" content="{{ . }}" />
+{{- end -}}
+{{ with site.Params.marketing.baidu_site_verification }}
+  <meta name="baidu-site-verification" content="{{ . }}" />
+{{- end -}}
+{{ with site.Params.marketing.bing_site_verification }}
+  <meta name="msvalidate.01" content="{{ . }}" />
+{{- end -}}
+
+{{ partial "head/marketing/google_analytics" . }}
+{{ partial "head/marketing/google_tag_manager" . }}
+{{ partial "head/marketing/microsoft_clarity" . }}
+{{ partial "head/marketing/baidu_tongji" . }}

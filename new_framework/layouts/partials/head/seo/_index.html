@@ -1,0 +1,50 @@
+{{ $title := "" }}
+{{ $title = .Title | default site.Title }}
+{{ if ne $title site.Title }}
+  {{ $title = printf "%s | %s" $title site.Title }}
+{{ end }}
+
+
+<meta property="og:site_name" content="{{ site.Title }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:title" content="{{ $title }}" />
+
+{{ $og_image := "" }}
+{{/* todo: config $scr.og_image for rss */}}
+{{- with $og_image -}}
+  <meta property="og:image" content="{{ . }}" />
+{{- end -}}
+
+
+<meta
+  property="og:locale"
+  content="{{ site.LanguageCode | default "en-us" }}"
+/>
+
+{{ $time_fmt := "2006-01-02T15:04:05-07:00" }}
+{{ if .IsPage }}
+  {{ if not .PublishDate.IsZero }}
+    <meta
+      property="article:published_time"
+      content="{{ .PublishDate.Format $time_fmt | safeHTML }}"
+    />
+  {{ else if not .Date.IsZero }}
+    <meta
+      property="article:published_time"
+      content="{{ .Date.Format $time_fmt | safeHTML }}"
+    />
+  {{ end }}
+  {{ if not .Lastmod.IsZero }}
+    <meta
+      property="article:modified_time"
+      content="{{ .Lastmod.Format $time_fmt | safeHTML }}"
+    />
+  {{ end }}
+{{ else }}
+  {{ if not .Date.IsZero }}
+    <meta
+      property="og:updated_time"
+      content="{{ .Date.Format $time_fmt | safeHTML }}"
+    />
+  {{ end }}
+{{ end }}

@@ -1,0 +1,42 @@
+{{- $scr := .Scratch -}}
+
+{{/* Get name of site's Color Theme. Precedence: Params.yaml > Default (Minimal) */}}
+{{- $theme_index := (site.Params.appearance.theme | lower | replaceRE "\\s" "_") | default "minimal" -}}
+
+{{- if not (index site.Data.themes $theme_index) -}}
+  {{- warnf "Theme `%s` not found at `data/themes/%s.toml`" site.Params.appearance.theme $theme_index -}}
+  {{- $theme_index = "minimal" -}}
+{{ end }}
+
+{{ $theme := index site.Data.themes $theme_index }}
+
+{{/* Get name of site's Font Set. Precedence: Params.yaml > Inherit from Color Theme > Default (Minimal) */}}
+{{- $font_index := (site.Params.appearance.font | lower | replaceRE "\\s" "_") | default ($theme.font | lower | replaceRE "\\s" "_") | default $theme_index -}}
+{{- $font_index := cond (isset site.Data.fonts $font_index) $font_index "minimal" -}}
+
+{{/* Get Font Size. */}}
+{{- $font_size := lower site.Params.font_size | default "l" -}}
+{{- $font_sizes := dict "xs" 14 "s" 16 "m" 18 "l" 21 "xl" 23 -}}
+{{- $font_size_numeric := (index $font_sizes $font_size) | default (index $font_sizes "l") -}}
+{{- $scr.Set "font_size" $font_size_numeric -}}
+{{- $scr.Set "font_size_small" (mul 0.77 $font_size_numeric) -}}
+
+{{/* Load Font Set. */}}
+{{- $font := index site.Data.fonts $font_index -}}
+{{- $scr.Set "google_fonts" $font.google_fonts -}}
+{{- $scr.Set "body_font" $font.body_font -}}
+{{- $scr.Set "heading_font" $font.heading_font -}}
+{{- $scr.Set "nav_font" $font.nav_font -}}
+{{- $scr.Set "mono_font" $font.mono_font -}}
+
+{{/* Load Theme. */}}
+{{- $scr.Set "color_primary" ($theme.primary | default "#1565c0") -}}
+{{- $scr.Set "color_accent" ($theme.accent | default "#1565c0") -}}
+{{- $scr.Set "color_solid" ($theme.solid | default "rgb(255, 255, 255)") -}}
+{{- $scr.Set "color_void" ($theme.void | default "rgb(233, 233, 233)") -}}
+
+{{/* Load Theme Design. */}}
+{{- $scr.Set "menu_hover" ($theme.menu_hover | default false) -}}
+{{- $scr.Set "menu_border" ($theme.menu_border | default false) -}}
+{{- $scr.Set "menu_shadow" ($theme.menu_shadow | default false) -}}
+{{- $scr.Set "menu_blur" ($theme.menu_blur | default false) -}}

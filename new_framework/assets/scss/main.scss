@@ -1,0 +1,7 @@
+
+{{/* automatically import main_*.scss */}}
+{{ range $val := (resources.Match "scss/*.main.scss") }}
+{{ $path := path.Base (string $val) }}
+@import "{{ $path }}";
+{{ end }}
+

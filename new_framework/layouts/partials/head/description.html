@@ -1,0 +1,14 @@
+{{/* Generate page description. */}}
+
+{{ $desc := "" }}
+{{ if .Description }}
+  {{ $desc = .Description }}
+{{ else if .IsPage }}
+  {{ $desc = .Summary }}
+{{ else }}
+  {{ $desc = site.Params.description }}
+{{ end }}
+
+
+<meta name="description" content="{{ $desc }}" />
+<meta property="og:description" content="{{ $desc }}" />

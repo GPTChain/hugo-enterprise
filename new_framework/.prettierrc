@@ -1,0 +1,10 @@
+{
+  "overrides": [
+    {
+      "files": ["*.html", "*.xml", "*.scss"],
+      "options": {
+        "parser": "go-template"
+      }
+    }
+  ]
+}

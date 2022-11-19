@@ -1,0 +1,31 @@
+- id: search
+  translation: Search
+
+- id: search_placeholder
+  translation: Search...
+
+- id: search_results
+  translation: results found
+
+- id: search_no_results
+  translation: No results found
+
+# Content types for default archive page titles and search results
+
+- id: posts
+  translation: Posts
+
+- id: publications
+  translation: Publications
+
+- id: talks
+  translation: Events
+
+- id: projects
+  translation: Projects
+
+- id: slides
+  translation: Slides
+
+- id: authors
+  translation: Authors

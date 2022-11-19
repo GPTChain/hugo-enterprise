@@ -1,0 +1,22 @@
+{{ $sass_template := resources.Get "scss/main.scss" }}
+
+{{ $css_options := dict "targetPath" "css/scss_parsed.css" }}
+{{ $style := $sass_template | resources.ExecuteAsTemplate "main_parsed.scss" . | toCSS $css_options }}
+{{- if hugo.IsProduction -}}
+  {{- $style = $style | minify -}}
+{{- end -}}
+
+{{ $style := slice $style | resources.Concat "css/scss_parsed.css" }}
+{{- if eq (getenv "WC_POST_CSS") "true" -}}
+  {{- $style = $style | postCSS -}}
+{{- end -}}
+{{- if hugo.IsProduction -}}
+  {{- $style = $style | fingerprint "md5" -}}
+{{- end -}}
+{{- if eq (getenv "WC_POST_CSS") "true" -}}
+  {{/* PostProcess must be last action in the pipeline */}}
+  {{- $style = $style | resources.PostProcess -}}
+{{- end -}}
+
+
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" />

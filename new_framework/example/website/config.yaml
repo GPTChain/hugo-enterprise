@@ -1,0 +1,51 @@
+baseURL: http://example.org/
+font_size: L
+
+module:
+  imports:
+    - path: "github.com/alphabiz-se2/hugo-base"
+
+languages:
+  en:
+    languageCode: en-us
+    title: bt6.com Website
+    contentDir: content/en
+  zh:
+    languageCode: zh
+    title: bt6.com 中文官网
+    contentDir: content/zh-hans
+  zh-Hant:
+    languageCode: zh-Hant
+    title: bt6.com 中文官網
+    contentDir: content/zh-hant
+
+appearance:
+  theme: Minimal
+  font: minimal
+
+#marketing:
+#  google_optimize: ''
+#  google_analytics: ''
+#  google_tag_manager: ''
+#  microsoft_clarity: ''
+#  google_site_verification: ''
+#  baidu_site_verification: ''
+#  bing_site_verification: ''
+
+cms:
+  netlify_cms: # config custom cms
+  branch: main
+  local_backend: false
+
+search:
+  provider: integrated_provider
+  integrated_provider:
+    min_length: 1
+    threshold: 0.3
+#  provider: algolia
+#  algolia:
+#    app_id:
+#    api_key:
+#    index_name:
+#    analytics:
+#    personalization:

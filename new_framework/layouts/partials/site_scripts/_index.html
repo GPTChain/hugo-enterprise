@@ -1,0 +1,76 @@
+{{ $scr := $.Scratch }}
+
+{{/* Rename _vendor dir as GitHub Pages doesn't automatically publish folders with underscores. */}}
+{{ $libs := slice }}
+{{- $lib_names := slice "jquery.min" "bootstrap.bundle.min" "instantpage" -}}
+{{- range $lib_names -}}
+  {{- $libs = $libs | append (resources.Get (printf "js/_vendor/%s.js" .) ) -}}
+{{- end -}}
+{{ $libs := $libs | resources.Concat "js/vendor-bundle.js" | minify }}
+{{- if hugo.IsProduction -}}
+  {{ $libs = $libs | fingerprint "md5" }}
+{{- end -}}
+<script src="{{ $libs.RelPermalink }}"></script>
+
+{{/* Attempt to load local vendor JS, otherwise load from CDN. */}}
+
+{{ $js := site.Data.assets.js }}
+{{ if not ($scr.Get "use_cdn") }}
+  <script src="{{ printf "/js/vendor/%s" ($scr.Get "vendor_js_filename") | relURL }}"></script>
+{{ else }}
+  {{/* todo: cdn isotope */}}
+  {{/* todo: cdn fancybox */}}
+  {{/* todo: cdn mermaid */}}
+  {{/* todo: cdn highlight */}}
+{{ end }}
+
+{{/* todo: cdn maps gmaps */}}
+{{/* todo: cdn maps leaflet */}}
+
+{{/* Load hash anchors for documentation pages. */}}
+{{ if in (slice "book" "docs") .Type }}
+  {{ printf "<script src=\"%s\" integrity=\"%s\" crossorigin=\"anonymous\"></script>" (printf $js.anchor.url $js.anchor.version) $js.anchor.sri | safeHTML }}
+  <script>
+    anchors.add();
+  </script>
+{{ end }}
+
+{{ $js_search_params := (partial "site_scripts/search.html" .) }}
+
+{{/* Page Data */}}
+{{ $default_headroom := false }}
+{{ $use_headroom := cond (isset $.Params "header.on_scroll") (eq $.Params.header.on_scroll "disappear") (default $default_headroom) }}
+{{ printf "<script id=\"page-data\" type=\"application/json\">%s</script>" (dict "use_headroom" $use_headroom | jsonify) | safeHTML }}
+
+{{ $search_provider := lower site.Params.search.provider }}
+{{ $search_enabled := (in (slice "integrated_provider" "algolia") $search_provider) }}
+{{ $js_params := dict "hugoEnvironment" hugo.Environment "codeHighlighting" false "searchEnabled" $search_enabled }}
+{{ $js_main := resources.Get "js/main-core.js" | js.Build (dict "targetPath" (printf "%s/js/main-core.js" .Lang ) "params" $js_params) }}
+
+{{ $js_bundle := slice $js_main }}
+{{ if eq $search_provider "integrated_provider" }}
+  {{ $js_integrated_search := resources.Get "js/integrated-search.js" | js.Build (dict "targetPath" (printf "%s/js/integrated-search-built.js" .Lang) "params" $js_search_params) }}
+  {{ $js_bundle = $js_bundle | append $js_integrated_search }}
+{{ end }}
+
+{{ $js_bundle = $js_bundle | resources.Concat (printf "%s/js/main-bundle.js" .Lang) }}
+{{- if hugo.IsProduction -}}
+  {{- $js_bundle = $js_bundle | js.Build (dict "format" "iife") | minify -}}
+{{- else -}}
+  {{- $js_bundle = $js_bundle | js.Build (dict "format" "iife" "sourceMap" "inline") -}}
+{{- end -}}
+{{ $js_bundle = slice $js_bundle | resources.Concat (printf "%s/js/main.min.js" .Lang) }}
+{{- if hugo.IsProduction -}}
+  {{ $js_bundle = $js_bundle | fingerprint "md5" }}
+{{- end -}}
+<script src="{{ $js_bundle.RelPermalink }}"></script>
+
+{{/* automatically import *.main.js */}}
+{{ range $val := (resources.Match "js/*.main.js") }}
+  {{ $path := path.Base (string $val) }}
+  {{ $plugin_js := resources.Get (printf "js/%s" $path) | js.Build (dict "format" "esm" "minify" true) }}
+  {{- if hugo.IsProduction -}}
+    {{- $plugin_js = $plugin_js | fingerprint "md5" -}}
+  {{- end -}}
+  <script src="{{ $plugin_js.RelPermalink }}" type="module"></script>
+{{ end }}
