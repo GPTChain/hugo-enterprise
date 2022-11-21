@@ -6,9 +6,11 @@
   will-change: transform;
   transition: transform 200ms linear;
 }
+
 .headroom--pinned {
   transform: translateY(0%);
 }
+
 .headroom--unpinned {
   transform: translateY(-100%);
 }
@@ -49,15 +51,26 @@
     // For z-index compatibility with logo on mobile layout, otherwise nav-item can't be clicked when logo present.
     position: relative;
     display: flex;
-    align-items: center;
+    justify-content: stretch;
+    align-items: stretch;
+
+    & > a {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     &:hover {
       //background-color: $sta-menu-hover;
     }
   }
+
   .nav-icons {
     display: flex;
     align-items: center;
   }
+
   .nav-icons > .nav-item {
     height: fit-content;
   }
@@ -146,9 +159,11 @@
       }
     }
   }
+
   .nav-item:hover {
     //background-color: $sta-dark-menu-hover;
   }
+
   .dropdown-item.active,
   .dropdown-item-active {
     color: $sta-dark-menu-text-active !important;
@@ -278,10 +293,10 @@
     background-color: $sta-dark-menu-primary;
   }
   #navbar-main .main-menu-item .nav-item {
-    padding: 10px 15px !important;
+    //padding: 10px 15px !important;
   }
   #navbar-main .main-menu-item .nav-item .nav-link {
-    padding: 5px 15px !important;
+    padding: 15px 30px !important;
   }
 
   .i18n-dropdown {
