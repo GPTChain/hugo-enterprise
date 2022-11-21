@@ -53,3 +53,16 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 }
+
+.btn-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.dark .form-control {
+  &:focus {
+    background-color: transparent;
+    backdrop-filter: brightness(2.4);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem var(--primary-color);
+  }
+}
