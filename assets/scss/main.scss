@@ -57,12 +57,14 @@ $sta-menu-blur: {{ $scr.Get "menu_blur" }};
 // config css var
 :root {
   --primary-color: #{$sta-primary};
+  --bg-color: #{$sta-background};
   --menu-primary-color: #{$sta-menu-primary};
   --bg-img-brn-ofs: 0.35;
 }
 
 .dark {
   --primary-color: #{$sta-dark-primary};
+  --bg-color: #{$sta-dark-background};
   --menu-primary-color: #{$sta-dark-menu-primary};
   --bg-img-brn-ofs: -0.35;
 }
