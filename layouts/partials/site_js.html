@@ -181,4 +181,14 @@
     <script src="{{ $plugin_js.RelPermalink }}" type="module"></script>
     {{ end }}
 
+    {{/* automatically import *.main.js */}}
+    {{ range $val := (resources.Match "js/*.main.js") }}
+    {{ $path := path.Base (string $val) }}
+    {{ $plugin_js := resources.Get (printf "js/%s" $path) | js.Build (dict "format" "esm" "minify" true) }}
+    {{- if hugo.IsProduction -}}
+    {{- $plugin_js = $plugin_js | fingerprint "md5" -}}
+    {{- end -}}
+    <script src="{{ $plugin_js.RelPermalink }}" type="module"></script>
+    {{ end }}
+
     {{ partial "custom_js" . }}
