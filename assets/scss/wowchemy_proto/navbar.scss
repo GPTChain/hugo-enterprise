@@ -60,14 +60,13 @@
 }
 
 // navbar blur
-.navbar {
+nav.navbar {
   @if(#{$sta-menu-blur}) {
     @include media-breakpoint-up(md) {
       backdrop-filter: blur(24px) saturate(1.8) brightness(1.1);
       -webkit-backdrop-filter: blur(24px) saturate(1.8) brightness(1.1);
     }
   }
-
 
   @include media-breakpoint-down(md) {
     backdrop-filter: none;
@@ -82,7 +81,13 @@
       -webkit-backdrop-filter: blur(24px) saturate(1.8) brightness(1);
     }
   }
+}
 
+.navbar {
+  @if(#{$sta-menu-blur}) {
+    backdrop-filter: blur(24px) saturate(1.8) brightness(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8) brightness(1.1);
+  }
 }
 
 
