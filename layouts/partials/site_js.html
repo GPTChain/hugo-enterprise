@@ -181,12 +181,19 @@
     <script src="{{ $plugin_js.RelPermalink }}" type="module"></script>
     {{ end }}
 
+    {{/* import *.shim.js */}}
+    {{ $shims := dict }}
+    {{ range $val := (resources.Match "js/*.shim.js") }}
+      {{ $module_name := (slicestr $val 3 (sub (len $val.Name) 8)) }}
+      {{ $shims = merge $shims (dict $module_name $val.RelPermalink) }}
+    {{ end }}
+
     {{/* automatically import *.main.js */}}
     {{ range $val := (resources.Match "js/*.main.js") }}
     {{ $path := path.Base (string $val) }}
-    {{ $plugin_js := resources.Get (printf "js/%s" $path) | js.Build (dict "format" "esm" "minify" true) }}
+    {{ $plugin_js := resources.Get (printf "js/%s" $path) | js.Build (dict "format" "esm" "minify" true "shims" $shims) }}
     {{- if hugo.IsProduction -}}
-    {{- $plugin_js = $plugin_js | fingerprint "md5" -}}
+      {{- $plugin_js = $plugin_js | fingerprint "md5" -}}
     {{- end -}}
     <script src="{{ $plugin_js.RelPermalink }}" type="module"></script>
     {{ end }}
