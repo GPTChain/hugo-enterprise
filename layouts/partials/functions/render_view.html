@@ -30,4 +30,4 @@
   {{end}}
 {{ end }}
 
-{{ return (partial (printf "views/%s" $view_file) (dict "page" $page "item" $item "index" $index)) }}
+{{ return (partialCached (printf "views/%s" $view_file) (dict "page" $page "item" $item "index" $index)) }}

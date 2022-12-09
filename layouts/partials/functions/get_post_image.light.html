@@ -1,0 +1,7 @@
+{{ $filename := . }}
+
+{{ $folderDir := (path.Join "media" "post") }}
+{{ $imageBaseName := ($filename | default "featured.png") }}
+{{ $imageBaseName = (path.Base $imageBaseName) }}
+{{ $resource :=  resources.Get (path.Join $folderDir $imageBaseName)}}
+{{ return $resource }}

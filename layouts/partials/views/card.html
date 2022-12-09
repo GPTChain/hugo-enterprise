@@ -45,7 +45,7 @@
     {{ partial "page_metadata" (dict "page" $item "is_list" 1) }}
   {{ end }}
 
-  {{ $resource := (partial "functions/get_post_image" $item) }}
+  {{ $resource := (partialCached "functions/get_post_image.light" $item.Params.image.filename) }}
 
   {{ $anchor := $item.Params.image.focal_point | default "Smart" }}
   {{ with $resource }}
