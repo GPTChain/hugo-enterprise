@@ -1,5 +1,8 @@
 {{ $page := . }}
-{{ $featured := (partialCached "functions/get_post_image.light" .Params.image.filename) }}
+{{ $featured := .Params.image.filename }}
+{{ if $featured }}
+{{ $featured = (partialCached "functions/get_post_image.light" .Params.image.filename) }}
+{{ end }}
 {{ $anchor := $page.Params.image.focal_point | default "Smart" }}
 
 {{/* Set default titles for node pages */}}

@@ -74,7 +74,10 @@
 
   </div>
   <div class="ml-3">
-    {{ $resource := (partialCached "functions/get_post_image.light" $item.Params.image.filename) }}
+    {{ $resource := $item.Params.image.filename }}
+    {{ if $resource }}
+      {{ $resource = (partialCached "functions/get_post_image.light" $resource) }}
+    {{ end }}
 
     {{ with $resource }}
     {{/* $image := .Resize "150x webp" */}}
