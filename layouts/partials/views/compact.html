@@ -76,7 +76,7 @@
   <div class="ml-3">
     {{ $resource := $item.Params.image.filename }}
     {{ if $resource }}
-      {{ $resource = (partialCached "functions/get_post_image.light" $resource) }}
+      {{ $resource = (partial "functions/get_post_image.light" $resource) }}
     {{ end }}
 
     {{ with $resource }}
