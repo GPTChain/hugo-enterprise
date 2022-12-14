@@ -73,15 +73,17 @@
     {{ end }}
 
   </div>
+
+  {{/* partial "disable/compact_image" (dict "page" . "link" $link "target" $target) */}}
   <div class="ml-3">
     {{ $resource := $item.Params.image.filename }}
     {{ if $resource }}
-      {{ $resource = (partial "functions/get_post_image.light" $resource) }}
+    {{ $resource = (partial "functions/get_post_image.light" $resource) }}
     {{ end }}
 
     {{ with $resource }}
     {{/* $image := .Resize "150x webp" */}}
-    {{ $image := .Resize "150x jpg" }}
+    {{ $image := .Resize "380x jpg" }}
     <a href="{{$link}}" {{ $target | safeHTMLAttr }}>
       <img src="{{ $image.RelPermalink }}" height="{{ $image.Height }}" width="{{ $image.Width }}"
            alt="{{ $item.Title }}" loading="lazy">

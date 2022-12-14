@@ -14,7 +14,7 @@
   {{- end -}}
 
   {{/* Parse theme and font */}}
-  {{ partial "functions/parse_theme" . }}
+  {{ partialCached "functions/parse_theme" . }}
 
   {{/* Pre-connect to Google Fonts if the site's Font Theme uses them. */}}
   {{ with ($scr.Get "google_fonts") }}
@@ -235,8 +235,8 @@
     <link rel="manifest" href="{{ .RelPermalink }}" />
   {{ end }}
 
-  <link rel="icon" type="image/png" href="{{ (partial "functions/get_icon" 32).RelPermalink }}" />
-  <link rel="apple-touch-icon" type="image/png" href="{{ (partial "functions/get_icon" 180).RelPermalink }}" />
+  <link rel="icon" type="image/png" href="{{ (partialCached "functions/get_icon" 32).RelPermalink }}" />
+  <link rel="apple-touch-icon" type="image/png" href="{{ (partialCached "functions/get_icon" 180).RelPermalink }}" />
 
   <link rel="canonical" href="{{ .Permalink }}" />
 
@@ -256,10 +256,10 @@
   {{ else if $sharing_image }}
     {{ $og_image = $sharing_image.Permalink }}
   {{ else if $has_logo }}
-    {{ $og_image = (partial "functions/get_logo" (dict "constraint" "fit" "size" 300)).Permalink }}
+    {{ $og_image = (partialCached "functions/get_logo" (dict "constraint" "fit" "size" 300)).Permalink }}
     {{ $twitter_card = "summary" }}
   {{ else }}
-    {{ $og_image = (partial "functions/get_icon" 512).Permalink }}
+    {{ $og_image = (partialCached "functions/get_icon" 512).Permalink }}
     {{ $twitter_card = "summary" }}
   {{ end }}
   {{ $scr.Set "og_image" $og_image }}{{/* Set `og_image` globally for `rss.xml`. */}}

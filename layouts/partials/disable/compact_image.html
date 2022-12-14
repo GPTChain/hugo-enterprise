@@ -1,0 +1,20 @@
+
+{{ $link := .link }}
+{{ $target := .target }}
+{{ $item := .page.item }}
+
+<div class="ml-3">
+  {{ $resource := $item.Params.image.filename }}
+  {{ if $resource }}
+  {{ $resource = (partial "functions/get_post_image.light" $resource) }}
+  {{ end }}
+
+  {{ with $resource }}
+  {{/* $image := .Resize "150x webp" */}}
+  {{ $image := .Resize "380x jpg" }}
+  <a href="{{$link}}" {{ $target | safeHTMLAttr }}>
+    <img src="{{ $image.RelPermalink }}" height="{{ $image.Height }}" width="{{ $image.Width }}"
+         alt="{{ $item.Title }}" loading="lazy">
+  </a>
+  {{end}}
+</div>
