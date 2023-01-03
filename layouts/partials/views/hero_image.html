@@ -1,0 +1,37 @@
+{{ $image_pathname := .image_pathname }}
+{{ $page := .page }}
+{{ $is_dark := .is_dark }}
+
+{{- $image := ($page.Parent.Resources.ByType "image").GetMatch $image_pathname -}}
+{{- if not $image -}}
+{{- $image = resources.Get $image_pathname -}}
+{{- end -}}
+{{ if $image }}
+
+<div class="{{if eq $is_dark "auto" }}auto-image{{else if $is_dark}}dark-image{{else}}light-image{{end}}">
+{{ $isSVG := eq $image.MediaType.SubType "svg" }}
+{{ if $isSVG -}}
+
+<img src="{{ $image.RelPermalink }}" alt="{{ $page.Title }}">
+
+{{- else }}
+
+{{ $legacy_img := $image.Resize "400x" }}
+{{ $img_src := "" }}
+{{ $img_src_set := slice }}
+{{ $widths := slice 1200 800 400 }}
+
+{{ range $widths }}
+{{ $src_link := ($image.Resize (printf "%dx" .)).RelPermalink }}
+{{ if eq $img_src "" }}
+{{ $img_src = $src_link }}
+{{ end }}
+{{ $img_src_set = $img_src_set | append (printf "%s %dw" $src_link .) }}
+{{ end }}
+{{ $img_src_set = delimit $img_src_set "," }}
+
+<img src="{{ $legacy_img.RelPermalink }}" srcset="{{ $img_src_set }}" width="{{ $image.Width }}"
+     height="{{ $image.Height }}" alt="{{ $page.Title }}">
+{{ end }}
+</div>
+{{ end }}

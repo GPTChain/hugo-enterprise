@@ -90,3 +90,21 @@ h1 {
     width: 0;
   }
 }
+
+body {
+  &.dark {
+    .hero-media {
+      &>.light-image {
+        display: none;
+      }
+    }
+  }
+  &:not(.dark) {
+    .hero-media {
+      &>.dark-image {
+        display: none;
+      }
+    }
+  }
+}
+
