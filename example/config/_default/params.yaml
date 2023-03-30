@@ -112,7 +112,8 @@ highlight_languages:
   - r
 math: false
 diagram: false
-privacy_pack: false
+features:
+  privacy_pack: false
 require_isotope: false  # Enable if you use Portfolio widget or Publication pages
 edit_page:
   repo_url: ''
