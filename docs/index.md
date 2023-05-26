@@ -1,4 +1,8 @@
 
+## Getting Started
+
+create your project from template: https://github.com/tanshuai/bp.net
+
 ---
 
 ## Website
