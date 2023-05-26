@@ -74,7 +74,7 @@ $sta-menu-blur: {{ $scr.Get "menu_blur" }};
 @import "wowchemy/wowchemy";
 @import "wowchemy_proto/index";
 
-{{ range $val := (resources.Match "scss/main_*.scss") }}
+{{ range $val := (resources.Match "scss/*.main.scss") }}
 {{ $path := path.Base (string $val) }}
   @import "{{ $path }}";
 {{ end }}
